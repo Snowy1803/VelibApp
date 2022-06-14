@@ -20,6 +20,8 @@ struct VelibFields: Codable {
     var name: String
     var stationcode: String
     var numbikesavailable: Int
+    var ebike: Int
+    var mechanical: Int
     var numdocksavailable: Int
     var capacity: Int
     var nomArrondissementCommunes: String
