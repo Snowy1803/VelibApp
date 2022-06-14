@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct VelibApp: App {
+    @StateObject var fetcher = VelibFetcher()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(fetcher)
         }
     }
 }

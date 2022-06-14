@@ -11,6 +11,8 @@
 		20F829BB28589F0E0007EE7F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F829BA28589F0E0007EE7F /* ContentView.swift */; };
 		20F829BD28589F0F0007EE7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20F829BC28589F0F0007EE7F /* Assets.xcassets */; };
 		20F829C128589F0F0007EE7F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20F829C028589F0F0007EE7F /* Preview Assets.xcassets */; };
+		20F829C82858A4A50007EE7F /* VelibModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F829C72858A4A50007EE7F /* VelibModel.swift */; };
+		20F829CA2858A6000007EE7F /* VelibFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F829C92858A6000007EE7F /* VelibFetcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		20F829BC28589F0F0007EE7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20F829BE28589F0F0007EE7F /* Velib.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Velib.entitlements; sourceTree = "<group>"; };
 		20F829C028589F0F0007EE7F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		20F829C72858A4A50007EE7F /* VelibModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VelibModel.swift; sourceTree = "<group>"; };
+		20F829C92858A6000007EE7F /* VelibFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VelibFetcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +56,8 @@
 		20F829B728589F0E0007EE7F /* Velib */ = {
 			isa = PBXGroup;
 			children = (
+				20F829C92858A6000007EE7F /* VelibFetcher.swift */,
+				20F829C72858A4A50007EE7F /* VelibModel.swift */,
 				20F829B828589F0E0007EE7F /* VelibApp.swift */,
 				20F829BA28589F0E0007EE7F /* ContentView.swift */,
 				20F829BC28589F0F0007EE7F /* Assets.xcassets */,
@@ -139,8 +145,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20F829CA2858A6000007EE7F /* VelibFetcher.swift in Sources */,
 				20F829BB28589F0E0007EE7F /* ContentView.swift in Sources */,
 				20F829B928589F0E0007EE7F /* VelibApp.swift in Sources */,
+				20F829C82858A4A50007EE7F /* VelibModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,11 +277,12 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Nous devons accéder à la localisation pour trouver les velib à proximité";
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.4;
@@ -301,11 +310,12 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Nous devons accéder à la localisation pour trouver les velib à proximité";
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.4;
