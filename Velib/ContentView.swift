@@ -15,41 +15,27 @@ struct ContentView: View {
     @State var error: Error? = nil
     
     var body: some View {
-        Map(
-            coordinateRegion: $region,
-            showsUserLocation: true,
-            annotationItems: fetcher.model.records) { velib in
-                MapAnnotation(coordinate: CLLocationCoordinate2D(
-                    latitude: velib.fields.coordonneesGeo[0],
-                    longitude: velib.fields.coordonneesGeo[1]), anchorPoint: CGPoint(x: 0.5, y: 0.7)) {
-                        Circle()
-                            .frame(width: 44, height: 44)
-                            .foregroundColor(velib.fields.numbikesavailable == 0 ? .red : velib.fields.numdocksavailable == 0 ? .purple : .green)
-                            .overlay {
-                                Image(systemName: "bicycle")
+        VelibMap(coordinateRegion: $region)
+            .ignoresSafeArea(.all)
+            .onAppear {
+                Task.detached {
+                    do {
+                        try await fetcher.requestLocation()
+                        if let coords = await fetcher.location.location?.coordinate {
+                            Task { @MainActor in
+                                region.center = coords
                             }
-                    }
-        }
-        .ignoresSafeArea(.all)
-        .onAppear {
-            Task.detached {
-                do {
-                    try await fetcher.requestLocation()
-                    if let coords = await fetcher.location.location?.coordinate {
-                        Task { @MainActor in
-                            region.center = coords
+                            try await fetcher.fetch(around: coords)
                         }
-                        try await fetcher.fetch(around: coords)
-                    }
-                } catch let error {
-                    print(error)
-                    Task { @MainActor in
-                        self.error = error
+                    } catch let error {
+                        print(error)
+                        Task { @MainActor in
+                            self.error = error
+                        }
                     }
                 }
             }
-        }
-        .errorAlert(error: $error)
+            .errorAlert(error: $error)
     }
 }
 
