@@ -37,8 +37,10 @@ struct ContentView: View {
                 }.buttonStyle(.bordered)
                     .padding()
             }
-            .sheet(item: $selected) { velib in
-                LocationModal(velib: velib)
+            .background {
+                BetterSheet(item: $selected) { velib in
+                    LocationModal(velib: velib)
+                }
             }
             .onAppear {
                 Task.detached {
@@ -59,6 +61,36 @@ struct ContentView: View {
                 }
             }
             .errorAlert(error: $error)
+    }
+}
+
+struct BetterSheet<Item, Content: View>: UIViewRepresentable {
+    @Binding var item: Item?
+    @ViewBuilder var content: (Item) -> Content
+    
+    func makeUIView(context: Context) -> UIView {
+        UIView()
+    }
+    
+    func updateUIView(_ uiView: UIView, context: Context) {
+        guard let item = item else {
+            uiView.window?.rootViewController?.dismiss(animated: true)
+            return
+        }
+        let profile = UIHostingController(rootView: content(item))
+        profile.navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .close, primaryAction: UIAction { [weak uiView] _ in
+            uiView?.window?.rootViewController?.dismiss(animated: true)
+        })
+        
+        let nav = UINavigationController(rootViewController: profile)
+        nav.navigationBar.standardAppearance.backgroundColor = .systemBackground
+        nav.navigationBar.standardAppearance.shadowColor = .clear
+        
+        if let sheet = nav.sheetPresentationController {
+            sheet.detents = [.medium(), .large()]
+        }
+        uiView.window?.rootViewController?.dismiss(animated: true) // dismiss what's potentially currently shown
+        uiView.window?.rootViewController?.present(nav, animated: true)
     }
 }
 
