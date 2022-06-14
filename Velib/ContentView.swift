@@ -23,6 +23,7 @@ struct ContentView: View {
                 latitude: velib.fields.coordonneesGeo[0],
                 longitude: velib.fields.coordonneesGeo[1]), tint: velib.fields.numbikesavailable == 0 ? .red : velib.fields.numdocksavailable == 0 ? .purple : .green)
         }
+        .ignoresSafeArea(.all)
         .onAppear {
             Task.detached {
                 do {
