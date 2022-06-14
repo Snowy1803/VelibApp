@@ -11,11 +11,12 @@ import MapKit
 
 struct VelibMap: View {
     @EnvironmentObject var fetcher: VelibFetcher
-    var coordinateRegion: Binding<MKCoordinateRegion>
+    @Binding var coordinateRegion: MKCoordinateRegion
+    @Binding var selection: VelibLocation?
     
     var body: some View {
         Map(
-            coordinateRegion: coordinateRegion,
+            coordinateRegion: $coordinateRegion,
             showsUserLocation: true,
             annotationItems: fetcher.model.records) { velib in
                 MapAnnotation(coordinate: CLLocationCoordinate2D(
@@ -26,6 +27,8 @@ struct VelibMap: View {
                             .foregroundColor(velib.fields.numbikesavailable == 0 ? .red : velib.fields.numdocksavailable == 0 ? .purple : .green)
                             .overlay {
                                 Image(systemName: "bicycle")
+                            }.onTapGesture {
+                                selection = velib
                             }
                     }
         }

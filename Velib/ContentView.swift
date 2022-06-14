@@ -13,9 +13,10 @@ struct ContentView: View {
     @State var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 48.81521, longitude: 2.36319), span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
     
     @State var error: Error? = nil
+    @State var selected: VelibLocation? = nil
     
     var body: some View {
-        VelibMap(coordinateRegion: $region)
+        VelibMap(coordinateRegion: $region, selection: $selected)
             .ignoresSafeArea(.all)
             .overlay(alignment: .topLeading) {
                 Button {
@@ -35,6 +36,28 @@ struct ContentView: View {
                     Image(systemName: "arrow.clockwise")
                 }.buttonStyle(.bordered)
                     .padding()
+            }
+            .sheet(item: $selected) { velib in
+                NavigationView {
+                    Form {
+                        HStack {
+                            Text("Vélos disponibles")
+                            Spacer()
+                            Text("\(velib.fields.numbikesavailable)")
+                        }
+                        HStack {
+                            Text("Emplacements vides")
+                            Spacer()
+                            Text("\(velib.fields.numdocksavailable)")
+                        }
+                        HStack {
+                            Text("Capacité")
+                            Spacer()
+                            Text("\(velib.fields.capacity)")
+                        }
+                    }.navigationTitle(velib.fields.name)
+                        .navigationBarTitleDisplayMode(.inline)
+                }
             }
             .onAppear {
                 Task.detached {
