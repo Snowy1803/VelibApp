@@ -17,6 +17,25 @@ struct ContentView: View {
     var body: some View {
         VelibMap(coordinateRegion: $region)
             .ignoresSafeArea(.all)
+            .overlay(alignment: .topLeading) {
+                Button {
+                    Task.detached {
+                        do {
+                            if let coords = await fetcher.location.location?.coordinate {
+                                try await fetcher.fetch(around: coords)
+                            }
+                        } catch let error {
+                            print(error)
+                            Task { @MainActor in
+                                self.error = error
+                            }
+                        }
+                    }
+                } label: {
+                    Image(systemName: "arrow.clockwise")
+                }.buttonStyle(.bordered)
+                    .padding()
+            }
             .onAppear {
                 Task.detached {
                     do {
