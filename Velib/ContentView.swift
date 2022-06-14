@@ -77,9 +77,11 @@ struct BetterSheet<Item, Content: View>: UIViewRepresentable {
             uiView.window?.rootViewController?.dismiss(animated: true)
             return
         }
-        let profile = UIHostingController(rootView: content(item))
-        profile.navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .close, primaryAction: UIAction { [weak uiView] _ in
-            uiView?.window?.rootViewController?.dismiss(animated: true)
+        let profile = UIHostingController(rootView: content(item).onDisappear {
+            self.item = nil
+        })
+        profile.navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .close, primaryAction: UIAction { _ in
+            self.item = nil
         })
         
         let nav = UINavigationController(rootViewController: profile)
