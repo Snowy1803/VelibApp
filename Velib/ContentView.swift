@@ -22,9 +22,7 @@ struct ContentView: View {
                 Button {
                     Task.detached {
                         do {
-                            if let coords = await fetcher.location.location?.coordinate {
-                                try await fetcher.fetch(around: coords)
-                            }
+                            try await fetcher.fetch(around: region.center)
                         } catch let error {
                             print(error)
                             Task { @MainActor in
