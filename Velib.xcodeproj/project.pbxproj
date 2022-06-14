@@ -14,6 +14,7 @@
 		20F829C82858A4A50007EE7F /* VelibModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F829C72858A4A50007EE7F /* VelibModel.swift */; };
 		20F829CA2858A6000007EE7F /* VelibFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F829C92858A6000007EE7F /* VelibFetcher.swift */; };
 		20F829CC2858C9450007EE7F /* VelibMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F829CB2858C9450007EE7F /* VelibMap.swift */; };
+		20F829CE2858D1A00007EE7F /* LocationModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F829CD2858D1A00007EE7F /* LocationModal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		20F829C72858A4A50007EE7F /* VelibModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VelibModel.swift; sourceTree = "<group>"; };
 		20F829C92858A6000007EE7F /* VelibFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VelibFetcher.swift; sourceTree = "<group>"; };
 		20F829CB2858C9450007EE7F /* VelibMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VelibMap.swift; sourceTree = "<group>"; };
+		20F829CD2858D1A00007EE7F /* LocationModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				20F829C72858A4A50007EE7F /* VelibModel.swift */,
 				20F829B828589F0E0007EE7F /* VelibApp.swift */,
 				20F829CB2858C9450007EE7F /* VelibMap.swift */,
+				20F829CD2858D1A00007EE7F /* LocationModal.swift */,
 				20F829BA28589F0E0007EE7F /* ContentView.swift */,
 				20F829BC28589F0F0007EE7F /* Assets.xcassets */,
 				20F829BE28589F0F0007EE7F /* Velib.entitlements */,
@@ -150,6 +153,7 @@
 			files = (
 				20F829CA2858A6000007EE7F /* VelibFetcher.swift in Sources */,
 				20F829BB28589F0E0007EE7F /* ContentView.swift in Sources */,
+				20F829CE2858D1A00007EE7F /* LocationModal.swift in Sources */,
 				20F829CC2858C9450007EE7F /* VelibMap.swift in Sources */,
 				20F829B928589F0E0007EE7F /* VelibApp.swift in Sources */,
 				20F829C82858A4A50007EE7F /* VelibModel.swift in Sources */,

@@ -38,26 +38,7 @@ struct ContentView: View {
                     .padding()
             }
             .sheet(item: $selected) { velib in
-                NavigationView {
-                    Form {
-                        HStack {
-                            Text("Vélos disponibles")
-                            Spacer()
-                            Text("\(velib.fields.numbikesavailable)")
-                        }
-                        HStack {
-                            Text("Emplacements vides")
-                            Spacer()
-                            Text("\(velib.fields.numdocksavailable)")
-                        }
-                        HStack {
-                            Text("Capacité")
-                            Spacer()
-                            Text("\(velib.fields.capacity)")
-                        }
-                    }.navigationTitle(velib.fields.name)
-                        .navigationBarTitleDisplayMode(.inline)
-                }
+                LocationModal(velib: velib)
             }
             .onAppear {
                 Task.detached {
