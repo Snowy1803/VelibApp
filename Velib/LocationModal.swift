@@ -44,8 +44,11 @@ struct LocationModal: View {
             } footer: {
                 Text("\(velib.fields.name), \(velib.fields.nomArrondissementCommunes)")
             }
-        }.navigationTitle(velib.fields.name)
-            .navigationBarTitleDisplayMode(.inline)
+        }
+        #if os(iOS)
+        .navigationTitle(velib.fields.name)
+        .navigationBarTitleDisplayMode(.inline)
+        #endif
     }
 }
 

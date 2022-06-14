@@ -30,6 +30,17 @@ struct VelibMap: View {
                             }.onTapGesture {
                                 selection = velib
                             }
+                            #if os(macOS)
+                            .popover(item: Binding(get: {
+                                if let selection, selection.id == velib.id {
+                                    return selection
+                                }
+                                return nil
+                            }, set: { selection = $0 })) { velib in
+                                LocationModal(velib: velib)
+                                    .padding()
+                            }
+                            #endif
                     }
         }
     }

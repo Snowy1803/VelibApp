@@ -37,11 +37,13 @@ struct ContentView: View {
                 }.buttonStyle(.bordered)
                     .padding()
             }
+        #if os(iOS)
             .background {
                 BetterSheet(item: $selected) { velib in
                     LocationModal(velib: velib)
                 }
             }
+        #endif
             .onAppear {
                 Task.detached {
                     do {
@@ -64,6 +66,7 @@ struct ContentView: View {
     }
 }
 
+#if os(iOS)
 struct BetterSheet<Item, Content: View>: UIViewRepresentable {
     @Binding var item: Item?
     @ViewBuilder var content: (Item) -> Content
@@ -95,6 +98,7 @@ struct BetterSheet<Item, Content: View>: UIViewRepresentable {
         uiView.window?.rootViewController?.present(nav, animated: true)
     }
 }
+#endif
 
 extension View {
     func errorAlert(error: Binding<Error?>) -> some View {
