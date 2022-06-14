@@ -19,9 +19,16 @@ struct ContentView: View {
             coordinateRegion: $region,
             showsUserLocation: true,
             annotationItems: fetcher.model.records) { velib in
-            MapMarker(coordinate: CLLocationCoordinate2D(
-                latitude: velib.fields.coordonneesGeo[0],
-                longitude: velib.fields.coordonneesGeo[1]), tint: velib.fields.numbikesavailable == 0 ? .red : velib.fields.numdocksavailable == 0 ? .purple : .green)
+                MapAnnotation(coordinate: CLLocationCoordinate2D(
+                    latitude: velib.fields.coordonneesGeo[0],
+                    longitude: velib.fields.coordonneesGeo[1]), anchorPoint: CGPoint(x: 0.5, y: 0.7)) {
+                        Circle()
+                            .frame(width: 44, height: 44)
+                            .foregroundColor(velib.fields.numbikesavailable == 0 ? .red : velib.fields.numdocksavailable == 0 ? .purple : .green)
+                            .overlay {
+                                Image(systemName: "bicycle")
+                            }
+                    }
         }
         .ignoresSafeArea(.all)
         .onAppear {
